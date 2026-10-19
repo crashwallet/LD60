@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public class MonitorOS : MonoBehaviour
 {
     [Header("Экраны монитора")]
@@ -17,12 +17,27 @@ public class MonitorOS : MonoBehaviour
     private bool isBooted = false;
     private Coroutine bootCoroutine;
 
+    [Header("Ввод мышью")]
+    [SerializeField] private Canvas canvas;              // M1_canvas
+    [SerializeField] private GraphicRaycaster raycaster; // на M1_canvas
+
     private void Start()
     {
-        // На старте оба экрана выключены — видна сама 3D-модель монитора
         bootScreen.SetActive(false);
         desktopScreen.SetActive(false);
+        if (canvas != null) canvas.worldCamera = Camera.main; // камера с CinemachineBrain
+        SetInput(false);
     }
+
+    // В начало TurnOnMonitor():  SetInput(true);
+    // В начало TurnOffMonitor(): SetInput(false);
+
+    private void SetInput(bool on)
+    {
+        if (raycaster != null) raycaster.enabled = on;
+        if (!on && EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
+    }
+
 
     public void TurnOnMonitor()
     {

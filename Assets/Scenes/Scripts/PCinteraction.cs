@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
-using UnityEngine.InputSystem; // Обязательно для новой Input System
+using UnityEngine.InputSystem; 
+using TMPro;
+using UnityEngine.EventSystems;
 
 public class MonitorInteract : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class MonitorInteract : MonoBehaviour
     [Header("Дистанция до игрока")]
     [SerializeField] private Transform player;
     [SerializeField] private float maxDistance = 2.5f;
+    [SerializeField] private Behaviour[] disableWhileSeated;
 
     private void OnEnable()
     {
@@ -47,33 +50,43 @@ public class MonitorInteract : MonoBehaviour
     }
 
     private void Update()
+{
+    if (player == null || monitorCamera == null || Keyboard.current == null) return;
+
+    if (activeMonitor == this && Vector3.Distance(transform.position, player.position) > maxDistance)
     {
-        if (player == null || monitorCamera == null || Keyboard.current == null) return;
-
-        // Автовыход, если игрок отошел от активного монитора
-        if (activeMonitor == this && Vector3.Distance(transform.position, player.position) > maxDistance)
-        {
-            DeactivateMonitor();
-            return;
-        }
-
-        // Проверяем нажатие клавиши E через новую Input System
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            // Если мы уже смотрим в ЭТОТ монитор — выходим из него
-            if (activeMonitor == this)
-            {
-                DeactivateMonitor();
-                return;
-            }
-
-            // Если ни один монитор не включен, активируем ТОЛЬКО самый ближайший к игроку
-            if (activeMonitor == null && GetClosestMonitor() == this)
-            {
-                ActivateMonitor();
-            }
-        }
+        DeactivateMonitor();
+        return;
     }
+
+    if (IsTyping()) return; // пока печатаем, E и Esc не трогаем
+
+    var kb = Keyboard.current;
+    if (activeMonitor == this && kb.escapeKey.wasPressedThisFrame)
+    {
+        DeactivateMonitor();
+        return;
+    }
+
+    if (kb.eKey.wasPressedThisFrame)
+    {
+        if (activeMonitor == this) { DeactivateMonitor(); return; }
+        if (activeMonitor == null && GetClosestMonitor() == this) ActivateMonitor();
+    }
+}
+private static bool IsTyping()
+{
+    var es = EventSystem.current;
+    if (es == null || es.currentSelectedGameObject == null) return false;
+    return es.currentSelectedGameObject.TryGetComponent(out TMP_InputField f) && f.isFocused;
+}
+
+private void SetPlayerControl(bool on)
+{
+    if (disableWhileSeated == null) return;
+    foreach (var b in disableWhileSeated) if (b != null) b.enabled = on;
+}
+
 
     private MonitorInteract GetClosestMonitor()
     {
@@ -94,10 +107,11 @@ public class MonitorInteract : MonoBehaviour
         return closest;
     }
 
-    private void ActivateMonitor()
+   private void ActivateMonitor()
 {
     activeMonitor = this;
     monitorCamera.Priority.Value = activePriority;
+    SetPlayerControl(false);
     if (monitorOS != null) monitorOS.TurnOnMonitor();
 }
 
@@ -105,6 +119,7 @@ private void DeactivateMonitor()
 {
     activeMonitor = null;
     monitorCamera.Priority.Value = inactivePriority;
+    SetPlayerControl(true);
     if (monitorOS != null) monitorOS.TurnOffMonitor();
 }
 }
