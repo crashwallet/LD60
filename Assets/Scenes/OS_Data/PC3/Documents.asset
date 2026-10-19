@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Documents
   m_EditorClassIdentifier: Assembly-CSharp::FolderData
   folderName: "\u041C\u043E\u0438 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B"
+  folderNameEn: My Documents
   kind: 0
-  folders: []
-  files: []
+  folders:
+  - {fileID: 11400000, guid: 28c67b5035a2bd7498cb1ba7fdf7e4ae, type: 2}
+  files:
+  - {fileID: 11400000, guid: 93dfdf639ede3e54bab571426c29cf91, type: 2}
+  - {fileID: 11400000, guid: 229e1331afef3574bb6d15f5a486002d, type: 2}
+  - {fileID: 11400000, guid: 9de6b714fc11b2e42aaef06e251232e0, type: 2}
   apps: []

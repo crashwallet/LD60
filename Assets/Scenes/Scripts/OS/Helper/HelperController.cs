@@ -31,7 +31,7 @@ public class HelperController : MonoBehaviour, IPointerClickHandler {
     [Tooltip("Реплики сами сменяются после паузы. Клик по помощнику всё равно листает сразу.")]
     [SerializeField] bool autoAdvance = true;
     [Tooltip("Пауза после того, как реплика допечатана: случайно от X до Y секунд.")]
-    [SerializeField] Vector2 autoDelay = new(1f, 1.5f);
+    [SerializeField] Vector2 autoDelay = new(3f, 3f);
     [Tooltip("Последняя реплика остаётся в облачке, пока не кликнут или не появится новая.")]
     [SerializeField] bool keepLastLine = true;
 
@@ -40,12 +40,20 @@ public class HelperController : MonoBehaviour, IPointerClickHandler {
     Coroutine typing;
     bool isTyping;
     bool greeted;
+    bool vanishAfterQueue;
+
+    // Помощник попрощался и исчез (со всех компьютеров)
+    public static bool Gone { get; private set; }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics() => Gone = false;
 
     void Awake() {
         if (bubble != null) bubble.SetActive(false);
     }
 
     void OnEnable() {
+        if (Gone) { gameObject.SetActive(false); return; } // уже исчез на другом компьютере
         ProgressionManager.OnTaskChanged += OnTaskChanged;
 
         if (!greeted) {
@@ -88,15 +96,22 @@ public class HelperController : MonoBehaviour, IPointerClickHandler {
 
     // --- Внутреннее ---
 
-    HelperLine TaskLine(TaskData t) => new() { text = t.clippyRequest, emotion = taskEmotion, shape = taskShape };
+    HelperLine TaskLine(TaskData t) => new() { text = t.Request, emotion = taskEmotion, shape = taskShape };
 
     void OnTaskChanged(TaskData t) {
-        if (t == null) Play(allTasksDone);
-        else if (announceTasks && !string.IsNullOrEmpty(t.clippyRequest)) Enqueue(TaskLine(t));
+        if (t == null) PlayFarewell();
+        else if (announceTasks && !string.IsNullOrEmpty(t.Request)) Enqueue(TaskLine(t));
+    }
+
+    // Все задания выполнены: благодарит и исчезает
+    void PlayFarewell() {
+        vanishAfterQueue = true;
+        Play(allTasksDone);
+        if (current == null && isActiveAndEnabled) Next();
     }
 
     void Enqueue(HelperLine line) {
-        if (line == null || string.IsNullOrEmpty(line.text)) return;
+        if (line == null || string.IsNullOrEmpty(line.Text)) return;
         queue.Add(line);
         if (current == null && isActiveAndEnabled) Next();
     }
@@ -108,6 +123,7 @@ public class HelperController : MonoBehaviour, IPointerClickHandler {
         if (queue.Count == 0) {
             current = null;
             if (bubble != null) bubble.SetActive(false);
+            if (vanishAfterQueue) { StartCoroutine(Vanish()); return; }
             if (avatar != null) {
                 avatar.SetEmotion(HelperEmotion.Default);
                 avatar.SetShape(HelperShape.Question);
@@ -133,7 +149,7 @@ public class HelperController : MonoBehaviour, IPointerClickHandler {
 
     IEnumerator Type(HelperLine line) {
         isTyping = true;
-        bubbleText.text = line.text;
+        bubbleText.text = line.Text;
         bubbleText.maxVisibleCharacters = 0;
         bubbleText.ForceMeshUpdate();
         int total = bubbleText.textInfo.characterCount;
@@ -159,11 +175,39 @@ public class HelperController : MonoBehaviour, IPointerClickHandler {
         yield return new WaitForSecondsRealtime(delay);
 
         // Последнюю реплику не убираем, пока не появится новая (или игрок не кликнет)
-        if (keepLastLine)
+        if (keepLastLine && !vanishAfterQueue)
             while (queue.Count == 0 && current == line) yield return null;
 
         typing = null; // Next() не должен останавливать сам этот корутин
         if (current == line) Next();
+    }
+
+    // Исчезновение: «!», мерцание как помехи, сжатие в точку
+    IEnumerator Vanish() {
+        vanishAfterQueue = false;
+        if (avatar != null) {
+            avatar.SetEmotion(HelperEmotion.Funny);
+            avatar.SetShape(HelperShape.Exclamation);
+        }
+        yield return new WaitForSecondsRealtime(0.6f);
+
+        var group = GetComponent<CanvasGroup>();
+        if (group == null) group = gameObject.AddComponent<CanvasGroup>();
+        for (int i = 0; i < 8; i++) {
+            group.alpha = i % 2 == 0 ? 0.15f : 1f;
+            yield return new WaitForSecondsRealtime(0.06f + Random.value * 0.08f);
+        }
+
+        Vector3 scale = transform.localScale;
+        for (float t = 0; t < 0.35f; t += Time.unscaledDeltaTime) {
+            float k = t / 0.35f;
+            transform.localScale = new Vector3(scale.x * (1f - k), scale.y * (1f + k * 0.5f) * (1f - k), scale.z);
+            group.alpha = 1f - k;
+            yield return null;
+        }
+
+        Gone = true;
+        gameObject.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData e) {

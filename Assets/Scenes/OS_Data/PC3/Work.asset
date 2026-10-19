@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787338873ad36904b9288bf6feccadcf, type: 3}
+  m_Name: Work
+  m_EditorClassIdentifier: Assembly-CSharp::FolderData
+  folderName: "\u0420\u0430\u0431\u043E\u0442\u0430"
+  folderNameEn: Work
+  kind: 0
+  folders: []
+  files:
+  - {fileID: 11400000, guid: d8afcfe5f76b03841a5b45510d046d24, type: 2}
+  - {fileID: 11400000, guid: 7118581a9573f6c4a8da748971e71bdc, type: 2}
+  apps: []

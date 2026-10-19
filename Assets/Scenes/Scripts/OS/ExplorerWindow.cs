@@ -57,7 +57,7 @@ public class ExplorerWindow : MonoBehaviour {
         layout.spacing = new Vector2(4, 4);
         layout.padding = new RectOffset(6, 6, 6, 6);
 
-        emptyText = OSUI.Text("Empty", scroll.transform, "Эта папка пуста", os.Font, os.TextFontSize, os.MutedTextColor, TextAlignmentOptions.Center);
+        emptyText = OSUI.Text("Empty", scroll.transform, Loc.T("Эта папка пуста", "This folder is empty"), os.Font, os.TextFontSize, os.MutedTextColor, TextAlignmentOptions.Center);
         OSUI.Stretch(emptyText.rectTransform);
 
         // Строка состояния
@@ -91,7 +91,7 @@ public class ExplorerWindow : MonoBehaviour {
 
         foreach (var f in current.folders.Where(f => f != null)) {
             var folder = f;
-            OSIcon.Create(os, grid, folder.folderName, os.IconFor(folder), os.TextColor, () => Navigate(folder), folder, current);
+            OSIcon.Create(os, grid, folder.DisplayName, os.IconFor(folder), os.TextColor, () => Navigate(folder), folder, current);
         }
         foreach (var f in current.files.Where(f => f != null)) {
             var file = f;
@@ -99,21 +99,21 @@ public class ExplorerWindow : MonoBehaviour {
         }
         foreach (var a in current.apps.Where(a => a != null)) {
             var app = a;
-            OSIcon.Create(os, grid, app.appName, os.IconFor(app), os.TextColor, () => os.OpenApp(app), app, current);
+            OSIcon.Create(os, grid, app.DisplayName, os.IconFor(app), os.TextColor, () => os.OpenApp(app), app, current);
         }
 
         int count = current.folders.Count(f => f != null) + current.files.Count(f => f != null) + current.apps.Count(a => a != null);
         emptyText.gameObject.SetActive(count == 0);
-        statusText.text = $"Объектов: {count}";
+        statusText.text = Loc.T($"Объектов: {count}", $"Items: {count}");
         backButton.interactable = history.Count > 0;
         addressText.text = BuildPath();
-        window.SetTitle(current.folderName);
+        window.SetTitle(current.DisplayName);
         scroll.verticalNormalizedPosition = 1f;
     }
 
     string BuildPath() {
-        var names = history.Reverse().Select(f => f.folderName).ToList();
-        names.Add(current.folderName);
+        var names = history.Reverse().Select(f => f.DisplayName).ToList();
+        names.Add(current.DisplayName);
         return string.Join("\\", names);
     }
 }

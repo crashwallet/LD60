@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HelperDialogue
   lines:
   - text: "\u0425\u043C... \u041D\u0435 \u043F\u043E\u0445\u043E\u0436\u0435. \u041F\u0440\u043E\u0432\u0435\u0440\u044C \u0448\u0438\u0444\u0440 \u0438 \u043A\u043B\u044E\u0447 \u0435\u0449\u0451 \u0440\u0430\u0437."
+    textEn: Hmm... Doesn't look right. Check the cipher and the key again.
     emotion: 5
     shape: 0
     autoNext: 0

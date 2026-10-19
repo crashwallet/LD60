@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Trash
   m_EditorClassIdentifier: Assembly-CSharp::FolderData
   folderName: "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"
+  folderNameEn: Recycle Bin
   kind: 2
   folders: []
-  files: []
+  files:
+  - {fileID: 11400000, guid: 2ad2e3577513b384da6daa898497cd4d, type: 2}
   apps: []

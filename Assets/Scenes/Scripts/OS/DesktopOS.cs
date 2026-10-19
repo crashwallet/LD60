@@ -18,7 +18,9 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
 
     [Header("Панель задач")]
     [SerializeField] string userName = "Пользователь";
+    [SerializeField] string userNameEn = "User";
     [SerializeField] string startButtonText = "Пуск";
+    [SerializeField] string startButtonTextEn = "Start";
     [SerializeField] float taskbarFontSize = 13f;
     [SerializeField] Color startButtonColor = new(0.22f, 0.58f, 0.22f);
     [SerializeField] Color taskbarButtonColor = new(0.75f, 0.88f, 0.95f);
@@ -74,8 +76,8 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
     public Color TextColor => textColor;
     public Color MutedTextColor => mutedTextColor;
 
-    public string UserName => userName;
-    public string StartButtonText => startButtonText;
+    public string UserName => Loc.T(userName, userNameEn);
+    public string StartButtonText => Loc.T(startButtonText, startButtonTextEn);
     public float TaskbarFontSize => taskbarFontSize;
     public Color StartButtonColor => startButtonColor;
     public Color TaskbarButtonColor => taskbarButtonColor;
@@ -236,7 +238,7 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
         }
         foreach (var f in desktopFolder.folders.Where(f => f != null)) {
             var folder = f;
-            OSIcon.Create(this, iconsArea, folder.folderName, IconFor(folder), desktopLabelColor, () => OpenFolder(folder), folder, desktopFolder);
+            OSIcon.Create(this, iconsArea, folder.DisplayName, IconFor(folder), desktopLabelColor, () => OpenFolder(folder), folder, desktopFolder);
         }
         foreach (var f in desktopFolder.files.Where(f => f != null)) {
             var file = f;
@@ -244,7 +246,7 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
         }
         foreach (var a in desktopFolder.apps.Where(a => a != null)) {
             var app = a;
-            OSIcon.Create(this, iconsArea, app.appName, IconFor(app), desktopLabelColor, () => OpenApp(app), app, desktopFolder);
+            OSIcon.Create(this, iconsArea, app.DisplayName, IconFor(app), desktopLabelColor, () => OpenApp(app), app, desktopFolder);
         }
     }
 
@@ -258,7 +260,7 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
         return s != null ? s : folderIcon;
     }
 
-    public Sprite IconFor(FileData f) => textFileIcon;
+    public Sprite IconFor(FileData f) => f.fileType == FileType.Image && f.image != null ? f.image : textFileIcon;
 
     public Sprite IconFor(AppData a) => a.icon != null ? a.icon : textFileIcon;
 
@@ -281,7 +283,7 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
         var existing = openWindows.FirstOrDefault(w => w != null && w.TryGetComponent(out ExplorerWindow ex) && ex.Current == folder);
         if (existing != null) { existing.Focus(); return; }
 
-        var window = CreateWindow(folder.folderName, explorerSize, folder, IconFor(folder));
+        var window = CreateWindow(folder.DisplayName, explorerSize, folder, IconFor(folder));
         ExplorerWindow.Create(this, window, folder);
     }
 
@@ -289,7 +291,13 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
         var existing = openWindows.FirstOrDefault(w => w != null && w.Key == file);
         if (existing != null) { existing.Focus(); return; }
 
-        var window = CreateWindow(file.fileName + " - Блокнот", textViewerSize, file, IconFor(file));
+        if (file.fileType == FileType.Image) {
+            var imgWindow = CreateWindow(file.fileName + Loc.T(" - Просмотр", " - Viewer"), textViewerSize, file, IconFor(file));
+            ImageViewerWindow.Create(this, imgWindow, file);
+            return;
+        }
+
+        var window = CreateWindow(file.fileName + Loc.T(" - Блокнот", " - Notepad"), textViewerSize, file, IconFor(file));
         TextViewerWindow.Create(this, window, file);
     }
 
@@ -307,7 +315,7 @@ public class DesktopOS : MonoBehaviour, IPointerClickHandler, IDropHandler {
             existing.Focus();
             return;
         }
-        var window = CreateWindow("Дешифратор", decryptorSize, null, decryptorIcon != null ? decryptorIcon : textFileIcon);
+        var window = CreateWindow(Loc.T("Дешифратор", "Decryptor"), decryptorSize, null, decryptorIcon != null ? decryptorIcon : textFileIcon);
         DecryptorWindow.Create(this, window, sourceText);
     }
 

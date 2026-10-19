@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e70754cca10ddf645a89901a3c359cea, type: 3}
+  m_Name: system_log.txt
+  m_EditorClassIdentifier: Assembly-CSharp::FileData
+  fileName: system_log.txt
+  fileType: 0
+  image: {fileID: 0}
+  encrypted: 1
+  cipher: 3
+  key: NIGHTJAR
+  plainText: 'SOMETHING COPIES OUR FILES EVERY NIGHT. ALL TRAFFIC GOES OUT THROUGH THIS TERMINAL. LAST WORD: MIRROR'
+  plainTextEn: 
+  content: FF 8F 73 EF 3A 4E A6 6F 95 4F 8D F5 EF A7 25 17 F9 EA 55 4F 1D 18 8A B9 9B CA F4 D6 8A A2 6A 0A 8C 8E 77 ED 26 52 C1 01 93 23 82 9A EB BC 21 02 9F EC 43 3D 7A 11 86 A6 FE D6 81 C7 FC B3 70 01 E3 95 79 E2 4E 52 A7 68 81 4F 9A FF ED A3 29 0A 98 E9 2E 3D 71 1F 90 A1 FE CE 9B C1 98 DD 18 1E E5 92 6C E5 3C

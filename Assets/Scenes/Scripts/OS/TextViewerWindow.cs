@@ -14,7 +14,7 @@ public class TextViewerWindow : MonoBehaviour {
         // У зашифрованных файлов — кнопка, которая открывает текст в «Дешифраторе»
         if (file.encrypted) {
             var toolbar = OSUI.TopBar(OSUI.Image("Toolbar", window.Content, os.ToolbarColor).rectTransform, ToolbarHeight);
-            var btn = OSUI.Button("ToDecryptor", toolbar, "Открыть в дешифраторе", os.Font, os.TextFontSize - 1,
+            var btn = OSUI.Button("ToDecryptor", toolbar, Loc.T("Открыть в дешифраторе", "Open in Decryptor"), os.Font, os.TextFontSize - 1,
                                   os.ButtonColor, os.TextColor, () => os.OpenDecryptor(body));
             var brt = (RectTransform)btn.transform;
             brt.anchorMin = brt.anchorMax = brt.pivot = new Vector2(0, 0.5f);

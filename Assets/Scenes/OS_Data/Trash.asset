@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Trash
   m_EditorClassIdentifier: Assembly-CSharp::FolderData
   folderName: "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"
+  folderNameEn: Recycle Bin
   kind: 2
   folders: []
   files: []
+  apps: []

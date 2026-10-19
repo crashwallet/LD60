@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Drive_C
   m_EditorClassIdentifier: Assembly-CSharp::FolderData
   folderName: "\u041B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0439 \u0434\u0438\u0441\u043A (C:)"
+  folderNameEn: Local Disk (C:)
   kind: 3
   folders:
   - {fileID: 11400000, guid: 4f42e7f02f94a194c92e7b6183dc0bdf, type: 2}
   files: []
+  apps: []

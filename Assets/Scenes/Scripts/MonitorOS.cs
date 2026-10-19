@@ -17,6 +17,7 @@ public class MonitorOS : MonoBehaviour
 
     private bool isBooted = false;
     private Coroutine bootCoroutine;
+    private PCAudio pcAudio; // звуки ЭЛТ, диска, мыши и клавиатуры
 
     [Header("Ввод мышью")]
     [SerializeField] private Canvas canvas;              // M1_canvas
@@ -32,6 +33,8 @@ public class MonitorOS : MonoBehaviour
     [SerializeField] private string deniedTitle = ":(";
     [TextArea(2, 6)]
     [SerializeField] private string deniedText = "НЕТ ДОСТУПА\n\nСистема заблокирована администратором.\nКод ошибки: 0x000000ACCESS_DENIED";
+    [TextArea(2, 6)]
+    [SerializeField] private string deniedTextEn = "ACCESS DENIED\n\nThe system has been locked by the administrator.\nError code: 0x000000ACCESS_DENIED";
     [Tooltip("Пауза на полностью заполненной полоске перед ошибкой.")]
     [SerializeField] private float deniedDelay = 0.5f;
 
@@ -56,6 +59,7 @@ public class MonitorOS : MonoBehaviour
         if (deniedScreen != null) deniedScreen.SetActive(false);
         if (canvas != null) canvas.worldCamera = Camera.main; // камера с CinemachineBrain
         SetInput(false);
+        pcAudio = PCAudio.Create(transform, desktopScreen.transform.position);
     }
 
     private void SetInput(bool on)
@@ -70,6 +74,7 @@ public class MonitorOS : MonoBehaviour
         SetInput(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        if (pcAudio != null) pcAudio.SetSeated(true);
 
         // Если ОС уже загружена и не нужно грузить заново — сразу включаем рабочий стол
         if (bootOnlyOnce && isBooted)
@@ -77,6 +82,8 @@ public class MonitorOS : MonoBehaviour
             desktopScreen.SetActive(true);
             return;
         }
+
+        if (pcAudio != null) pcAudio.PowerOn();
 
         if (bootCoroutine != null) StopCoroutine(bootCoroutine);
         bootCoroutine = StartCoroutine(BootSequence());
@@ -89,10 +96,12 @@ public class MonitorOS : MonoBehaviour
         Cursor.visible = false;
 
         if (bootCoroutine != null) StopCoroutine(bootCoroutine);
+        if (pcAudio != null) pcAudio.SetSeated(false);
 
         // Если нужно выключать монитор при уходе (или если загрузка прервалась на середине)
         if (!bootOnlyOnce || !isBooted)
         {
+            if (pcAudio != null) pcAudio.PowerOff();
             bootScreen.SetActive(false);
             desktopScreen.SetActive(false);
             if (deniedScreen != null) deniedScreen.SetActive(false);
@@ -105,6 +114,7 @@ public class MonitorOS : MonoBehaviour
         if (bootCoroutine != null) StopCoroutine(bootCoroutine);
         bootCoroutine = null;
         isBooted = false;
+        if (pcAudio != null) pcAudio.PowerOff();
         bootScreen.SetActive(false);
         desktopScreen.SetActive(false);
         if (deniedScreen != null) deniedScreen.SetActive(false);
@@ -118,7 +128,9 @@ public class MonitorOS : MonoBehaviour
         if (deniedInfo != null)
         {
             int have = ProgressionManager.Instance != null ? ProgressionManager.Instance.VirusAccess : 0;
-            deniedInfo.text = $"{deniedText}\n\nТребуемый уровень доступа: {requiredAccess}\nТекущий уровень доступа: {have}";
+            deniedInfo.text = Loc.T(
+                $"{deniedText}\n\nТребуемый уровень доступа: {requiredAccess}\nТекущий уровень доступа: {have}",
+                $"{deniedTextEn}\n\nRequired access level: {requiredAccess}\nCurrent access level: {have}");
         }
         deniedScreen.transform.SetAsLastSibling();
         deniedScreen.SetActive(true);
@@ -194,6 +206,7 @@ public class MonitorOS : MonoBehaviour
 
         // 2. Включаем экран загрузки и запускаем полоску
         bootScreen.SetActive(true);
+        if (pcAudio != null) pcAudio.DiskStart();
 
         float timer = 0f;
         while (timer < bootTime)
@@ -212,6 +225,7 @@ public class MonitorOS : MonoBehaviour
         {
             if (deniedDelay > 0f) yield return new WaitForSeconds(deniedDelay);
             bootScreen.SetActive(false);
+            if (pcAudio != null) pcAudio.DiskStop();
             ShowDenied();
             bootCoroutine = null;
             yield break;
@@ -219,6 +233,7 @@ public class MonitorOS : MonoBehaviour
 
         // 4. Показываем рабочий стол
         isBooted = true;
+        if (pcAudio != null) pcAudio.DiskStop();
         bootScreen.SetActive(false);
         desktopScreen.SetActive(true);
     }

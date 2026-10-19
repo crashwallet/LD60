@@ -2,7 +2,7 @@ using UnityEngine;
 
 // Выдвижной ящик стола/шкафа: смотришь на него и жмёшь ЛКМ (см. PlayerInteractor).
 // Вешается на отдельный объект ящика (нужен коллайдер — Tools → Interact добавит BoxCollider сам).
-public class DeskDrawer : MonoBehaviour {
+public class DeskDrawer : MonoBehaviour, IInteractable {
     [Tooltip("Куда выезжает ящик, в мировых осях (например (0,0,1)). (0,0,0) — определить при первом открытии: в сторону игрока.")]
     [SerializeField] Vector3 openDirection = Vector3.zero;
     [Tooltip("На сколько метров выезжает. 0 — 70% глубины ящика.")]
@@ -22,6 +22,10 @@ public class DeskDrawer : MonoBehaviour {
     bool directionReady;
 
     public bool IsOpen => isOpen;
+
+    public string PromptText => isOpen ? Loc.T("ЛКМ — закрыть", "LMB — close") : Loc.T("ЛКМ — открыть", "LMB — open");
+
+    public void Interact(Vector3 viewerPosition) => Toggle(viewerPosition);
 
     void Awake() {
         closedLocalPos = transform.localPosition;

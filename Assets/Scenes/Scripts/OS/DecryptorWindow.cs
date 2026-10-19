@@ -8,8 +8,8 @@ using UnityEngine.UI;
 // Программа «Дешифратор»: выбрать открытый шифр, ввести ключ, расшифровать текст и отправить ответ на задание
 public class DecryptorWindow : MonoBehaviour {
     static readonly Dictionary<CipherType, string> CipherNames = new() {
-        { CipherType.Caesar, "Шифр Цезаря" },
-        { CipherType.Vigenere, "Шифр Виженера" },
+        { CipherType.Caesar, "Caesar" },
+        { CipherType.Vigenere, "Vigenere" },
         { CipherType.Des, "DES" },
     };
 
@@ -47,7 +47,7 @@ public class DecryptorWindow : MonoBehaviour {
         Color txt = os.TextColor, muted = os.MutedTextColor;
 
         // Строка 1: шифр и ключ
-        Box(OSUI.Text("CipherCaption", c, "Шифр:", os.Font, fs, txt).rectTransform, 6, 4, 44, 20);
+        Box(OSUI.Text("CipherCaption", c, Loc.T("Шифр:", "Cipher:"), os.Font, fs, txt).rectTransform, 6, 4, 44, 20);
         var prev = OSUI.Button("Prev", c, "<", os.Font, fs, os.ButtonColor, txt, () => StepCipher(-1));
         Box((RectTransform)prev.transform, 50, 4, 20, 20);
         cipherLabel = OSUI.Text("Cipher", c, "", os.Font, fs, txt, TextAlignmentOptions.Center);
@@ -55,16 +55,16 @@ public class DecryptorWindow : MonoBehaviour {
         var next = OSUI.Button("Next", c, ">", os.Font, fs, os.ButtonColor, txt, () => StepCipher(1));
         Box((RectTransform)next.transform, 192, 4, 20, 20);
 
-        Box(OSUI.Text("KeyCaption", c, "Ключ:", os.Font, fs, txt).rectTransform, 222, 4, 44, 20);
-        keyInput = OSUI.InputField("Key", c, "число или слово", os.Font, fs, txt, muted, false);
+        Box(OSUI.Text("KeyCaption", c, Loc.T("Ключ:", "Key:"), os.Font, fs, txt).rectTransform, 222, 4, 44, 20);
+        keyInput = OSUI.InputField("Key", c, Loc.T("число или слово", "number or word"), os.Font, fs, txt, muted, false);
         Band((RectTransform)keyInput.transform, 268, 6, 4, 20);
 
         // Исходный текст
-        Band(OSUI.Text("SourceCaption", c, "Зашифрованный текст:", os.Font, fs - 1, txt).rectTransform, 6, 6, 28, 16);
-        sourceInput = OSUI.InputField("Source", c, "вставь или открой зашифрованный файл", os.Font, fs, txt, muted, true);
+        Band(OSUI.Text("SourceCaption", c, Loc.T("Зашифрованный текст:", "Encrypted text:"), os.Font, fs - 1, txt).rectTransform, 6, 6, 28, 16);
+        sourceInput = OSUI.InputField("Source", c, Loc.T("вставь или открой зашифрованный файл", "paste text or open an encrypted file"), os.Font, fs, txt, muted, true);
         Band((RectTransform)sourceInput.transform, 6, 6, 44, 62);
 
-        var run = OSUI.Button("Decrypt", c, "Расшифровать", os.Font, fs, os.ButtonColor, txt, Decrypt);
+        var run = OSUI.Button("Decrypt", c, Loc.T("Расшифровать", "Decrypt"), os.Font, fs, os.ButtonColor, txt, Decrypt);
         var rrt = (RectTransform)run.transform;
         rrt.anchorMin = rrt.anchorMax = rrt.pivot = new Vector2(1, 1);
         rrt.sizeDelta = new Vector2(120, 20);
@@ -73,7 +73,7 @@ public class DecryptorWindow : MonoBehaviour {
         Band(statusText.rectTransform, 6, 132, 110, 20);
 
         // Результат
-        Band(OSUI.Text("ResultCaption", c, "Результат:", os.Font, fs - 1, txt).rectTransform, 6, 6, 134, 16);
+        Band(OSUI.Text("ResultCaption", c, Loc.T("Результат:", "Result:"), os.Font, fs - 1, txt).rectTransform, 6, 6, 134, 16);
         var outContent = OSUI.ScrollArea("Result", c, new Color(0.97f, 0.97f, 0.94f), out _);
         var outRt = (RectTransform)outContent.parent.parent;
         outRt.anchorMin = new Vector2(0, 0);
@@ -99,10 +99,10 @@ public class DecryptorWindow : MonoBehaviour {
         questionText = OSUI.Text("Question", taskPanel, "", os.Font, fs, txt);
         questionText.textWrappingMode = TextWrappingModes.Normal;
         Band(questionText.rectTransform, 6, 6, 2, 22);
-        answerInput = OSUI.InputField("Answer", taskPanel, "ответ", os.Font, fs, txt, muted, false);
+        answerInput = OSUI.InputField("Answer", taskPanel, Loc.T("ответ", "answer"), os.Font, fs, txt, muted, false);
         Band((RectTransform)answerInput.transform, 6, 96, 26, 20);
         answerInput.onSubmit.AddListener(_ => SubmitAnswer());
-        var send = OSUI.Button("Send", taskPanel, "Отправить", os.Font, fs, os.ButtonColor, txt, SubmitAnswer);
+        var send = OSUI.Button("Send", taskPanel, Loc.T("Отправить", "Submit"), os.Font, fs, os.ButtonColor, txt, SubmitAnswer);
         var srt = (RectTransform)send.transform;
         srt.anchorMin = srt.anchorMax = srt.pivot = new Vector2(1, 1);
         srt.sizeDelta = new Vector2(84, 20);
@@ -145,21 +145,21 @@ public class DecryptorWindow : MonoBehaviour {
     }
 
     void UpdateCipherLabel() {
-        cipherLabel.text = available.Count == 0 ? "нет доступных"
+        cipherLabel.text = available.Count == 0 ? Loc.T("нет доступных", "none available")
             : CipherNames.TryGetValue(available[cipherIndex], out var n) ? n : available[cipherIndex].ToString();
     }
 
     void Decrypt() {
-        if (available.Count == 0) { statusText.text = "Пока нет ни одного открытого шифра"; return; }
-        if (string.IsNullOrWhiteSpace(sourceInput.text)) { statusText.text = "Нет текста для расшифровки"; return; }
-        if (string.IsNullOrWhiteSpace(keyInput.text)) { statusText.text = "Введи ключ"; return; }
+        if (available.Count == 0) { statusText.text = Loc.T("Пока нет ни одного открытого шифра", "No ciphers unlocked yet"); return; }
+        if (string.IsNullOrWhiteSpace(sourceInput.text)) { statusText.text = Loc.T("Нет текста для расшифровки", "Nothing to decrypt"); return; }
+        if (string.IsNullOrWhiteSpace(keyInput.text)) { statusText.text = Loc.T("Введи ключ", "Enter a key"); return; }
 
         try {
             outputText.text = CipherFactory.Get(available[cipherIndex]).Decrypt(sourceInput.text, keyInput.text.Trim());
-            statusText.text = "Готово";
+            statusText.text = Loc.T("Готово", "Done");
         } catch (Exception) {
             outputText.text = "";
-            statusText.text = "Не получилось — проверь шифр и ключ";
+            statusText.text = Loc.T("Не получилось — проверь шифр и ключ", "Failed — check the cipher and the key");
         }
     }
 
@@ -169,10 +169,10 @@ public class DecryptorWindow : MonoBehaviour {
         if (!hasPm) return;
 
         if (task == null) {
-            questionText.text = "Заданий больше нет";
+            questionText.text = Loc.T("Заданий больше нет", "No more tasks");
             answerInput.interactable = false;
         } else {
-            questionText.text = string.IsNullOrEmpty(task.answerQuestion) ? "Ответ:" : task.answerQuestion;
+            questionText.text = string.IsNullOrEmpty(task.Question) ? Loc.T("Ответ:", "Answer:") : task.Question;
             answerInput.interactable = true;
         }
         RefreshCiphers();
@@ -183,7 +183,7 @@ public class DecryptorWindow : MonoBehaviour {
         if (pm == null || pm.CurrentTask == null || string.IsNullOrWhiteSpace(answerInput.text)) return;
 
         bool ok = pm.Submit(answerInput.text);
-        answerStatus.text = ok ? "Ответ принят" : "Неверно, попробуй ещё";
+        answerStatus.text = ok ? Loc.T("Ответ принят", "Answer accepted") : Loc.T("Неверно, попробуй ещё", "Wrong, try again");
         if (ok) answerInput.text = "";
         if (os.Helper != null) os.Helper.ReactToAnswer(ok);
     }

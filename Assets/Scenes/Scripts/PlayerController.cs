@@ -69,6 +69,17 @@ public class FirstPersonController : MonoBehaviour
         HandleMovement();
     }
 
+    public float Pitch => verticalRotation;
+
+    // Повернуть игрока и голову (для катсцен). Работает и при выключенном контроллере,
+    // а после включения обзор продолжится с этого положения без рывка.
+    public void SetLook(float yaw, float pitch)
+    {
+        verticalRotation = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+        transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+        if (cameraRoot != null) cameraRoot.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
+    }
+
     // Колёсико вперёд — приблизить, назад — отдалить до обычного угла обзора
     private void HandleZoom()
     {

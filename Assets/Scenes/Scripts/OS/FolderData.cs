@@ -7,6 +7,8 @@ public enum FolderKind { Folder = 0, MyComputer = 1, Trash = 2, Drive = 3 }
 public class FolderData : ScriptableObject {
     [Header("Папка")]
     public string folderName = "Новая папка";
+    public string folderNameEn;
+    public string DisplayName => Loc.T(folderName, folderNameEn);
     [Tooltip("Folder — обычная папка, MyComputer — «Мой компьютер», Trash — корзина, Drive — диск (C:).")]
     public FolderKind kind = FolderKind.Folder;
 

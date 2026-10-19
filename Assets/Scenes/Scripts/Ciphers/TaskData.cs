@@ -5,6 +5,11 @@ public class TaskData : ScriptableObject {
     [Header("Что говорит Скрепка")]
     [TextArea] public string clippyRequest;   // "Расшифруй этот файл, я помогу!"
     public string answerQuestion;             // "Какой пароль в файле?"
+    [TextArea] public string clippyRequestEn;
+    public string answerQuestionEn;
+
+    public string Request => Loc.T(clippyRequest, clippyRequestEn);
+    public string Question => Loc.T(answerQuestion, answerQuestionEn);
 
     [Header("Головоломка")]
     public FileData file;                     // файл, который надо расшифровать

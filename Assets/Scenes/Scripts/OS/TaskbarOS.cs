@@ -76,7 +76,7 @@ public class TaskbarOS : MonoBehaviour {
         var body = OSUI.Image("Body", mrt, os.WindowColor).rectTransform;
         OSUI.Stretch(body, 2, 2, 2, 30);
 
-        Item(body, 0, "Выключить компьютер", () => { HideMenu(); os.ShutDown(); });
+        Item(body, 0, Loc.T("Выключить компьютер", "Shut down"), () => { HideMenu(); os.ShutDown(); });
 
         menu.SetActive(false);
     }

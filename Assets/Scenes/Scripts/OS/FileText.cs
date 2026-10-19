@@ -2,8 +2,15 @@
 public static class FileText {
     public static string Visible(FileData f) {
         if (f == null) return "";
+
+        // Незашифрованный файл — на языке игры
+        if (!f.encrypted) {
+            string ru = !string.IsNullOrEmpty(f.content) ? f.content : f.plainText ?? "";
+            return Loc.T(ru, f.plainTextEn);
+        }
+
+        // Шифротекст всегда один (шифры на английском)
         if (!string.IsNullOrEmpty(f.content)) return f.content;
-        if (!f.encrypted) return f.plainText ?? "";
 
         // Забыли нажать «Зашифровать plainText → content» — шифруем на лету, чтобы не показать ответ
         try {

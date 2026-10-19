@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04f52cf83d5c53043ada1fa5cb904933, type: 3}
+  m_Name: SoundBank
+  m_EditorClassIdentifier: Assembly-CSharp::SoundBank
+  mouseClick: {fileID: 8300000, guid: 017ebccd3181eb9409824f3be794a90c, type: 3}
+  keyPress: {fileID: 8300000, guid: 614676f9ef522a4408210b9f48197e6f, type: 3}
+  diskStart: {fileID: 8300000, guid: ebc8d89fa236d904a81daef8e14e23c4, type: 3}
+  diskLoop: {fileID: 8300000, guid: d6321dfe79066204d806be87bee6fb3e, type: 3}
+  diskEnd: {fileID: 8300000, guid: 697d85599080ba3458ad86fb9e542e32, type: 3}
+  crtStart: {fileID: 8300000, guid: 5792c3cd377bac74c879fc9a45a2cc5c, type: 3}
+  crtLoop: {fileID: 8300000, guid: a8cd9390c7496724ea68f48da8ae20c4, type: 3}
+  crtEnd: {fileID: 8300000, guid: e5ad28a2a150ca849b57838da4ac5959, type: 3}
+  officeAmbience: {fileID: 8300000, guid: d4ac219a82638124fbbfdaf8d2d5ae68, type: 3}
+  lightBuzz: {fileID: 8300000, guid: a54ebb08019272f45b1acde63389203d, type: 3}
+  footsteps:
+  - {fileID: 8300000, guid: 3b4e01f005247614ba50f5058665db90, type: 3}
+  - {fileID: 8300000, guid: d486bc810ff76ef4ea6520972c786712, type: 3}
+  - {fileID: 8300000, guid: 938ff101709613b488183f7e3c1c96a9, type: 3}
+  - {fileID: 8300000, guid: 05b5e9f0c6efcda43a16a514e05243e0, type: 3}
+  - {fileID: 8300000, guid: 2285359663ded8c47939398302f9e303, type: 3}
+  - {fileID: 8300000, guid: 575630644d21f614385d8f96bae199e9, type: 3}
+  - {fileID: 8300000, guid: 6c4cec1f688a0704cadefab7b24506fb, type: 3}
+  - {fileID: 8300000, guid: 46198cb2704ce754aa2c3412ec3d170c, type: 3}
+  - {fileID: 8300000, guid: 41de4b90bbabe5843877b3e007d6f0ec, type: 3}
+  - {fileID: 8300000, guid: 7547adfc9f299cc4cbcb936ec594948e, type: 3}
+  - {fileID: 8300000, guid: 3c2739d9e0007dc409dba8a87e8245df, type: 3}
+  - {fileID: 8300000, guid: 11ec0188199f41a4d838c67f704ae775, type: 3}
+  - {fileID: 8300000, guid: 329267bef45d041449607890d1273e26, type: 3}
+  - {fileID: 8300000, guid: 704e9c1a5ce33ca4396553003622e9f5, type: 3}
+  - {fileID: 8300000, guid: 36db25f8f9d20db4a89054b14cbf6c23, type: 3}
+  pcVolume: 0.6
+  ambienceVolume: 0.35
+  buzzVolume: 0.12
+  footstepVolume: 0.45

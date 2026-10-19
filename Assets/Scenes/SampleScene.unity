@@ -418,7 +418,9 @@ MonoBehaviour:
   windowsArea: {fileID: 31934326}
   taskBar: {fileID: 0}
   userName: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C"
+  userNameEn: User
   startButtonText: "\u041F\u0443\u0441\u043A"
+  startButtonTextEn: Start
   taskbarFontSize: 13
   startButtonColor: {r: 0.22, g: 0.58, b: 0.22, a: 1}
   taskbarButtonColor: {r: 0.75, g: 0.88, b: 0.95, a: 1}
@@ -628,6 +630,12 @@ MonoBehaviour:
   deniedBackground: {r: 0, g: 0, b: 0.66, a: 1}
   deniedTitle: :(
   deniedText: "\u041D\u0415\u0422 \u0414\u041E\u0421\u0422\u0423\u041F\u0410\n\n\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0437\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u0430 \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u043E\u043C.\n\u041A\u043E\u0434 \u043E\u0448\u0438\u0431\u043A\u0438: 0x000000ACCESS_DENIED"
+  deniedTextEn: 'ACCESS DENIED
+
+
+    The system has been locked by the administrator.
+
+    Error code: 0x000000ACCESS_DENIED'
   deniedDelay: 0.5
 --- !u!1 &164923339
 GameObject:
@@ -1258,6 +1266,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &248775244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7751901320460324662, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+  m_PrefabInstance: {fileID: 1745423833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &259201083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,9 +1456,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.05
   far clip plane: 1000
-  field of view: 60
+  field of view: 50.3
   orthographic: 0
   orthographic size: 5
   m_Depth: 20
@@ -1471,8 +1484,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.04062484, y: -0.07578605, z: 0.0030902561, w: 0.9962914}
+  m_LocalPosition: {x: 7.4, y: -0.04399997, z: 34.039997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2212,13 +2225,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454667551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: -0.7071068}
-  m_LocalPosition: {x: -4.116, y: 1.576, z: -2.949}
+  m_LocalRotation: {x: 0, y: 0.64545774, z: 0, w: -0.763796}
+  m_LocalPosition: {x: -4.02, y: 1.5, z: -3.11}
   m_LocalScale: {x: -0.34280267, y: -0.34280264, z: -0.2694136}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1555083878}
-  m_LocalEulerAnglesHint: {x: -180, y: 90, z: 180}
+  m_LocalEulerAnglesHint: {x: -180, y: 99.6, z: 180}
 --- !u!114 &454667553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2537,13 +2550,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672685509}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -2.367, y: 1.555, z: -4.4359875}
+  m_LocalRotation: {x: 0.00043125916, y: 0.9994255, z: 0.013955629, w: -0.030884411}
+  m_LocalPosition: {x: -2.38, y: 1.46, z: -4.34}
   m_LocalScale: {x: -0.34280267, y: -0.34280264, z: -0.2694136}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1830310285}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: -178.4, y: 3.54, z: 180}
 --- !u!114 &672685511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2604,6 +2617,195 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &718703227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 718703229}
+  - component: {fileID: 718703228}
+  m_Layer: 0
+  m_Name: IntroSequence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &718703228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718703227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4061da90e9a924844ac2b202ac9fe234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IntroSequence
+  playWhenStartedDirectly: 1
+  player: {fileID: 1808274198}
+  walkSpeed: 1.3
+  walkInDistance: 1.5
+  phoneStandDistance: 0.8
+  phoneStandPoint: {fileID: 0}
+  door: {fileID: 248775244}
+  hingeOnOtherSide: 0
+  flipOpenDirection: 0
+  doorOpenAngle: 80
+  yawOffset: 0
+  doorBaked: 1
+  bakedDoorCenter: {x: 5.473825, y: 1.3566113, z: -3.1526864}
+  bakedWidthAxis: {x: 0.0018908668, y: 0, z: 0.9999982}
+  bakedHalfWidth: 0.6123748
+  bakedHalfThick: 0.13075405
+  createDarkVoid: 1
+  voidMaterial: {fileID: 2100000, guid: d0e585e18a4e8cf45b2b42c3dcae5280, type: 2}
+  voidDepth: 3
+  phoneHandset: {fileID: 1246012501}
+  phoneBase: {fileID: 1246012500}
+  ringClip: {fileID: 0}
+  doorCloseClip: {fileID: 0}
+  pickUpClip: {fileID: 0}
+  hangUpClip: {fileID: 0}
+  lineStaticClip: {fileID: 0}
+  cutClip: {fileID: 0}
+  busyToneClip: {fileID: 0}
+  speakerRu: "\u0413\u043E\u043B\u043E\u0441 \u0432 \u0442\u0440\u0443\u0431\u043A\u0435"
+  speakerEn: Voice on the phone
+  lines:
+  - ru: "\u0410\u043B\u043B\u043E? \u0422\u044B \u043D\u0430 \u043C\u0435\u0441\u0442\u0435? \u0425\u043E\u0440\u043E\u0448\u043E... \u0421\u043B\u0443\u0448\u0430\u0439 \u0432\u043D\u0438\u043C\u0430\u0442\u0435\u043B\u044C\u043D\u043E, \u0441\u0432\u044F\u0437\u044C \u043F\u043B\u043E\u0445\u0430\u044F."
+    en: Hello? Are you there? Good... Listen carefully, the connection is bad.
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.1
+    duration: 0
+  - ru: "\u041D\u0443\u0436\u043D\u043E \u043F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C \u0442\u0440\u0438 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0430 \u0432 \u044D\u0442\u043E\u043C \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0435. \u0412\u0441\u0435 \u0442\u0440\u0438. \u0423\u0431\u0435\u0434\u0438\u0441\u044C, \u0447\u0442\u043E \u043E\u043D\u0438 \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442."
+    en: You need to check the three computers in this office. All three. Make sure they work.
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.15
+    duration: 0
+  - ru: "\u041F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0435 \u0434\u043D\u0438 \u0441\u0438\u0441\u0442\u0435\u043C\u044B \u0432\u0435\u0434\u0443\u0442 \u0441\u0435\u0431\u044F... \u0441\u0442\u0440\u0430\u043D\u043D\u043E. \u0421\u043C\u043E\u0442\u0440\u0438 \u0432\u043D\u0438\u043C\u0430\u0442\u0435\u043B\u044C\u043D\u043E, \u0447\u0442\u043E \u0438\u043C\u0435\u043D\u043D\u043E \u0442\u044B \u0434\u0435\u043B\u0430\u0435\u0448\u044C."
+    en: The systems have been acting... strange lately. Pay attention to what exactly you are doing.
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.35
+    duration: 0
+  - ru: "\u0418 \u0431\u0443\u0434\u044C \u043E\u0441\u0442\u043E\u0440\u043E\u0436\u0435\u043D. \u0415\u0441\u043B\u0438 \u0443\u0432\u0438\u0434\u0438\u0448\u044C \u0447\u0442\u043E-\u0442\u043E \u0441\u0442\u0440\u0430\u043D\u043D\u043E\u0435, \u0441\u0440\u0430\u0437\u0443 \u0432\u044B\u043A\u043B\u044E\u0447\u0430\u0439 \u0438..."
+    en: And be careful. If you see anything strange, shut it down at once and...
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.7
+    duration: 0
+  callDelay: 5
+  calls:
+  - afterTasks: 1
+    speakerRu: "\u0421\u0438\u0441\u0430\u0434\u043C\u0438\u043D"
+    speakerEn: Sysadmin
+    lines:
+    - ru: "\u0410\u043B\u043B\u043E, \u044D\u0442\u043E \u0441\u0438\u0441\u0430\u0434\u043C\u0438\u043D. \u041D\u0443 \u043A\u0430\u043A \u0442\u0430\u043C, \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u044B \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u044E\u0442\u0441\u044F?"
+      en: Hello, it's the sysadmin. So, are the computers starting up?
+      voiceRu: {fileID: 0}
+      voiceEn: {fileID: 0}
+      glitch: 0.05
+      duration: 0
+    - ru: "\u0425\u043E\u0440\u043E\u0448\u043E. \u0421\u043B\u0443\u0448\u0430\u0439, \u043D\u0430 \u043F\u0435\u0440\u0432\u043E\u043C \u0435\u0441\u0442\u044C \u0430\u0440\u0445\u0438\u0432, inventory.txt. \u042F \u0435\u043C\u0443 \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u0441\u043C\u0435\u043D\u0438\u043B \u043A\u043B\u044E\u0447 \u2014 \u0442\u0435\u043F\u0435\u0440\u044C \u0441\u0434\u0432\u0438\u0433 \u043D\u0430 \u0441\u0435\u043C\u044C."
+      en: "Good. Listen, there's an archive on the first one, inventory.txt. I changed its key recently \u2014 the shift is seven now."
+      voiceRu: {fileID: 0}
+      voiceEn: {fileID: 0}
+      glitch: 0.05
+      duration: 0
+    - ru: "\u041B\u0430\u0434\u043D\u043E, \u0440\u0430\u0431\u043E\u0442\u0430\u0439. \u042F \u0435\u0449\u0451 \u043F\u043E\u0437\u0432\u043E\u043D\u044E."
+      en: Okay, keep working. I'll call again.
+      voiceRu: {fileID: 0}
+      voiceEn: {fileID: 0}
+      glitch: 0.05
+      duration: 0
+  - afterTasks: 3
+    speakerRu: "\u0428\u0435\u0444"
+    speakerEn: Boss
+    lines:
+    - ru: "\u042D\u0442\u043E \u0448\u0435\u0444. \u041D\u0443 \u0447\u0442\u043E, \u043A\u0430\u043A \u043F\u0440\u043E\u0434\u0432\u0438\u0433\u0430\u0435\u0442\u0441\u044F? \u0412\u0442\u043E\u0440\u043E\u0439 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440 \u043E\u0436\u0438\u043B?"
+      en: It's the boss. So, how's it going? Is the second computer alive?
+      voiceRu: {fileID: 0}
+      voiceEn: {fileID: 0}
+      glitch: 0.05
+      duration: 0
+    - ru: "\u041E\u0442\u043B\u0438\u0447\u043D\u043E. \u041C\u043D\u0435 \u043A \u0443\u0442\u0440\u0443 \u043D\u0443\u0436\u0435\u043D \u043E\u0442\u0447\u0451\u0442, \u0447\u0442\u043E \u0432\u0441\u0451 \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442. \u0418 \u043D\u0435 \u0437\u0430\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0439\u0441\u044F \u0442\u0430\u043C \u0441\u043B\u0438\u0448\u043A\u043E\u043C \u0434\u043E\u043B\u0433\u043E."
+      en: Great. I need a report by morning that everything works. And don't stay there too long.
+      voiceRu: {fileID: 0}
+      voiceEn: {fileID: 0}
+      glitch: 0.05
+      duration: 0
+  - afterTasks: 4
+    speakerRu: "\u0421\u0438\u0441\u0430\u0434\u043C\u0438\u043D"
+    speakerEn: Sysadmin
+    lines:
+    - ru: "\u0421\u043D\u043E\u0432\u0430 \u044F. \u0421\u0442\u0440\u0430\u043D\u043D\u043E\u0435 \u0434\u0435\u043B\u043E \u2014 \u0443 \u043C\u0435\u043D\u044F \u0432 \u043C\u043E\u043D\u0438\u0442\u043E\u0440\u0438\u043D\u0433\u0435 \u0441\u043A\u0430\u0447\u043E\u043A \u0442\u0440\u0430\u0444\u0438\u043A\u0430 \u0438\u0437 \u0432\u0430\u0448\u0435\u0433\u043E \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0430."
+      en: "Me again. Strange thing \u2014 my monitoring shows a traffic spike from your office."
+      voiceRu: {fileID: 0}
+      voiceEn: {fileID: 0}
+      glitch: 0.1
+      duration: 0
+    - ru: "\u041D\u0430\u0432\u0435\u0440\u043D\u043E\u0435, \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F \u043A\u0430\u0447\u0430\u044E\u0442\u0441\u044F... \u041B\u0430\u0434\u043D\u043E. \u041F\u0440\u043E\u0432\u0435\u0440\u044C \u0442\u0440\u0435\u0442\u0438\u0439 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440 \u0438 \u0438\u0434\u0438 \u0434\u043E\u043C\u043E\u0439."
+      en: Probably updates downloading... Okay. Check the third computer and go home.
+      voiceRu: {fileID: 0}
+      voiceEn: {fileID: 0}
+      glitch: 0.15
+      duration: 0
+  playEnding: 1
+  bossRu: "\u0428\u0435\u0444"
+  bossEn: Boss
+  endingLines:
+  - ru: "\u0410\u043B\u043B\u043E! \u042D\u0442\u043E \u0448\u0435\u0444. \u0425\u043E\u0440\u043E\u0448\u043E, \u0447\u0442\u043E \u0442\u044B \u0435\u0449\u0451 \u0442\u0430\u043C... \u0421\u043B\u0443\u0448\u0430\u0439 \u0432\u043D\u0438\u043C\u0430\u0442\u0435\u043B\u044C\u043D\u043E."
+    en: Hello! It's the boss. Good, you're still there... Listen carefully.
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.05
+    duration: 0
+  - ru: "\u041D\u0430\u0441 \u0430\u0442\u0430\u043A\u043E\u0432\u0430\u043B\u0438. \u0412 \u0441\u0435\u0442\u0438 \u0431\u044B\u043B \u0432\u0438\u0440\u0443\u0441 \u2014 \u043E\u043D \u0441\u0438\u0434\u0435\u043B \u0442\u0430\u043C \u0432\u0441\u0451 \u044D\u0442\u043E \u0432\u0440\u0435\u043C\u044F."
+    en: "We've been attacked. There was a virus in the network \u2014 it was there the whole time."
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.05
+    duration: 0
+  - ru: "\u0412\u0441\u0435 \u0434\u0430\u043D\u043D\u044B\u0435 \u0443\u043A\u0440\u0430\u0434\u0435\u043D\u044B. \u0411\u0430\u0437\u044B, \u043F\u0435\u0440\u0435\u043F\u0438\u0441\u043A\u0430, \u043F\u0440\u043E\u0435\u043A\u0442 \xABNIGHTJAR\xBB \u2014 \u0445\u0430\u043A\u0435\u0440\u044B \u0437\u0430\u0431\u0440\u0430\u043B\u0438 \u0432\u0441\u0451."
+    en: "All our data has been stolen. Databases, mail, project NIGHTJAR \u2014 the hackers took everything."
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.05
+    duration: 0
+  - ru: "\u0422\u044B... \u0442\u044B \u0432\u0435\u0434\u044C \u043D\u0438\u0447\u0435\u0433\u043E \u0442\u0430\u043C \u043D\u0435 \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u043B?"
+    en: You... you didn't run anything there, did you?
+    voiceRu: {fileID: 0}
+    voiceEn: {fileID: 0}
+    glitch: 0.05
+    duration: 0
+  theEndRu: "\u041A\u041E\u041D\u0415\u0426"
+  theEndEn: THE END
+  thanksRu: "\u0421\u043F\u0430\u0441\u0438\u0431\u043E \u0437\u0430 \u0438\u0433\u0440\u0443!"
+  thanksEn: Thanks for playing!
+  endTitleTime: 5
+  returnToMenu: 1
+--- !u!4 &718703229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718703227}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &739323602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,7 +2824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &739323603
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2698,7 +2900,9 @@ MonoBehaviour:
   windowsArea: {fileID: 2037934327}
   taskBar: {fileID: 1206336307}
   userName: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C"
+  userNameEn: User
   startButtonText: "\u041F\u0443\u0441\u043A"
+  startButtonTextEn: Start
   taskbarFontSize: 13
   startButtonColor: {r: 0.22, g: 0.58, b: 0.22, a: 1}
   taskbarButtonColor: {r: 0.75, g: 0.88, b: 0.95, a: 1}
@@ -3059,7 +3263,7 @@ MonoBehaviour:
   taskShape: 1
   charsPerSecond: 45
   autoAdvance: 1
-  autoDelay: {x: 1, y: 1.5}
+  autoDelay: {x: 3, y: 3}
   keepLastLine: 1
 --- !u!114 &817993520
 MonoBehaviour:
@@ -3266,8 +3470,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 12118859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3883,6 +4087,148 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &950344050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 950344051}
+  - component: {fileID: 950344055}
+  - component: {fileID: 950344054}
+  - component: {fileID: 950344053}
+  - component: {fileID: 950344052}
+  m_Layer: 0
+  m_Name: Note_LetterGrid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &950344051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950344050}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.05117338, z: -0, w: 0.9986898}
+  m_LocalPosition: {x: -2.8739552, y: 1.1085523, z: -4.932667}
+  m_LocalScale: {x: 0.10000001, y: 0.002, z: 0.10000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1738396880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &950344052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950344050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec21359e70e56a4191c0c34cb2dc756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteItem
+  text: 'R H A K
+
+    N E O B
+
+    G L S P
+
+    D M X T'
+  textEn: 'R H A K
+
+    N E O B
+
+    G L S P
+
+    D M X T'
+  image: {fileID: 0}
+  paperColor: {r: 0.96, g: 0.94, b: 0.86, a: 1}
+  monospace: 1
+--- !u!23 &950344053
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950344050}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 93b30a37dd31c264aa0d75d0b00c3486, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &950344054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950344050}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &950344055
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950344050}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &959786148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,7 +4427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &977541299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4242,7 +4588,9 @@ MonoBehaviour:
   windowsArea: {fileID: 2108142194}
   taskBar: {fileID: 0}
   userName: "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C"
+  userNameEn: User
   startButtonText: "\u041F\u0443\u0441\u043A"
+  startButtonTextEn: Start
   taskbarFontSize: 13
   startButtonColor: {r: 0.22, g: 0.58, b: 0.22, a: 1}
   taskbarButtonColor: {r: 0.75, g: 0.88, b: 0.95, a: 1}
@@ -4542,7 +4890,7 @@ MonoBehaviour:
   avatar: {fileID: 1124772225}
   bubble: {fileID: 917787731}
   bubbleText: {fileID: 959786150}
-  greeting: {fileID: 11400000, guid: 9fa58822eed820a4298e448fd5015968, type: 2}
+  greeting: {fileID: 11400000, guid: 0f57762510699c042abefcd6c8715cd1, type: 2}
   correctAnswer: {fileID: 11400000, guid: 5d78a037101c5f44f944368d12ec9fe4, type: 2}
   wrongAnswer: {fileID: 11400000, guid: cb7d69b13329bdc4d8d23574424af197, type: 2}
   allTasksDone: {fileID: 11400000, guid: c1c90dc03d4998b45b8ab86fc49ada1d, type: 2}
@@ -4551,7 +4899,7 @@ MonoBehaviour:
   taskShape: 1
   charsPerSecond: 45
   autoAdvance: 1
-  autoDelay: {x: 1, y: 1.5}
+  autoDelay: {x: 3, y: 3}
   keepLastLine: 1
 --- !u!114 &1124772225
 MonoBehaviour:
@@ -4604,6 +4952,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProgressionManager
   tasks:
   - {fileID: 11400000, guid: 41adf5dc0b2a8314ca5b656a4e8cecf6, type: 2}
+  - {fileID: 11400000, guid: bf3d257f82315ee4d999b17762c66371, type: 2}
+  - {fileID: 11400000, guid: 7e20b1fbeb7482c44a7a156b9c0d2a9d, type: 2}
+  - {fileID: 11400000, guid: afbfb5980e8f34a4a85180fd6ad8d842, type: 2}
+  - {fileID: 11400000, guid: 5b97907a0e4b4234c86af9660b1d4a27, type: 2}
+  - {fileID: 11400000, guid: 404b318c80a7f2845857bc2b471e7b92, type: 2}
   maxAccess: 10
   cipherUnlocks:
   - cipher: 0
@@ -4627,6 +4980,140 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1171255836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1171255837}
+  - component: {fileID: 1171255841}
+  - component: {fileID: 1171255840}
+  - component: {fileID: 1171255839}
+  - component: {fileID: 1171255838}
+  m_Layer: 0
+  m_Name: Note_DesHint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1171255837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171255836}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.04069048, z: -0, w: 0.9991718}
+  m_LocalPosition: {x: -4.6448784, y: 0.8361536, z: -2.5133715}
+  m_LocalScale: {x: 0.10000001, y: 0.002, z: 0.14}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1738396879}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1171255838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171255836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec21359e70e56a4191c0c34cb2dc756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteItem
+  text: "\u041D\u043E\u0432\u044B\u0439 \u043A\u043B\u044E\u0447 \u0434\u043B\u044F \u043B\u043E\u0433\u043E\u0432 (DES) \u2014 \u043A\u043E\u0434\u043E\u0432\u043E\u0435 \u0438\u043C\u044F \u043F\u0440\u043E\u0435\u043A\u0442\u0430.\n\u0422\u043E\u043B\u044C\u043A\u043E \u0417\u0410\u0413\u041B\u0410\u0412\u041D\u042B\u041C\u0418!\n\u0418\u043C\u044F \u0435\u0441\u0442\u044C \u0432 \u043F\u0438\u0441\u044C\u043C\u0435 \u0448\u0435\u0444\u0430 \u043D\u0430 \u0441\u043E\u0441\u0435\u0434\u043D\u0435\u043C \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0435."
+  textEn: 'The new log key (DES) is the project codename.
+
+    CAPITALS only!
+
+    The name is in the boss''s letter on the next computer.'
+  image: {fileID: 0}
+  paperColor: {r: 0.96, g: 0.94, b: 0.86, a: 1}
+  monospace: 0
+--- !u!23 &1171255839
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171255836}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 93b30a37dd31c264aa0d75d0b00c3486, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1171255840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171255836}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1171255841
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171255836}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1204301121
 GameObject:
   m_ObjectHideFlags: 0
@@ -4795,7 +5282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1235398907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4855,6 +5342,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235398906}
   m_CullTransparentMesh: 1
+--- !u!4 &1246012500 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -775069670341356040, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+  m_PrefabInstance: {fileID: 1745423833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1246012501 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9113395247693854548, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+  m_PrefabInstance: {fileID: 1745423833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1285021036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5144902361964071943, guid: f58442ef7f2eb084787d5acc68c0eef8, type: 3}
@@ -4950,16 +5447,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409673286}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1235398907}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: 15}
+  m_AnchoredPosition: {x: 30, y: 15}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1409673288
@@ -5081,9 +5578,13 @@ MonoBehaviour:
   activePriority: 20
   inactivePriority: 0
   player: {fileID: 1808274196}
-  maxDistance: 5
+  maxDistance: 1
   disableWhileSeated:
   - {fileID: 801162336}
+  highlightOnApproach: 1
+  promptText: 'Press [E]'
+  promptTextRu: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 [E]"
+  promptFont: {fileID: 11400000, guid: cd6f01ad0faf49f4ea36eefd5ff8e712, type: 2}
 --- !u!65 &1431839743
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5764,6 +6265,26 @@ MonoBehaviour:
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   volume: 0.7
+--- !u!4 &1738396879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2573594901869084910, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+  m_PrefabInstance: {fileID: 1745423833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1738396880 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5569561676766292977, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+  m_PrefabInstance: {fileID: 1745423833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1738396881 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4343808374519356568, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+  m_PrefabInstance: {fileID: 1745423833}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1738396882 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3706575787297542398, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+  m_PrefabInstance: {fileID: 1745423833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1745423833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5816,6 +6337,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8380788598653663624, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+      propertyPath: m_Name
+      value: door
+      objectReference: {fileID: 0}
+    - target: {fileID: -6763858364670572316, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+      propertyPath: m_Name
+      value: phone_base
+      objectReference: {fileID: 0}
     - target: {fileID: -6619309407426909245, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5839,6 +6368,10 @@ PrefabInstance:
     - target: {fileID: -6619309407426909245, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4086623299244522798, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+      propertyPath: m_Name
+      value: phone
       objectReference: {fileID: 0}
     - target: {fileID: -3943430134344596909, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
       propertyPath: m_LocalScale.x
@@ -6059,6 +6592,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -9221370191671510041, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1783744517}
+    - targetCorrespondingSourceObject: {fileID: -3706575787297542398, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2017917840}
+    - targetCorrespondingSourceObject: {fileID: 4343808374519356568, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911841491}
+    - targetCorrespondingSourceObject: {fileID: 5569561676766292977, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 950344051}
+    - targetCorrespondingSourceObject: {fileID: -2573594901869084910, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1171255837}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -4086623299244522798, guid: 9a86612e99d572f41adc4b6a5227c559, type: 3}
       insertIndex: -1
@@ -6626,7 +7171,7 @@ MonoBehaviour:
   avatar: {fileID: 1778718194}
   bubble: {fileID: 60163963}
   bubbleText: {fileID: 1435689163}
-  greeting: {fileID: 11400000, guid: 9fa58822eed820a4298e448fd5015968, type: 2}
+  greeting: {fileID: 11400000, guid: 0a3a21e5b6a1a314a99c5cfe29442369, type: 2}
   correctAnswer: {fileID: 11400000, guid: 5d78a037101c5f44f944368d12ec9fe4, type: 2}
   wrongAnswer: {fileID: 11400000, guid: cb7d69b13329bdc4d8d23574424af197, type: 2}
   allTasksDone: {fileID: 11400000, guid: c1c90dc03d4998b45b8ab86fc49ada1d, type: 2}
@@ -6635,7 +7180,7 @@ MonoBehaviour:
   taskShape: 1
   charsPerSecond: 45
   autoAdvance: 1
-  autoDelay: {x: 1, y: 1.5}
+  autoDelay: {x: 3, y: 3}
   keepLastLine: 1
 --- !u!114 &1778718194
 MonoBehaviour:
@@ -6793,8 +7338,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 212066056}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7105,9 +7650,13 @@ MonoBehaviour:
   activePriority: 20
   inactivePriority: 0
   player: {fileID: 1808274196}
-  maxDistance: 5
+  maxDistance: 1
   disableWhileSeated:
   - {fileID: 801162336}
+  highlightOnApproach: 1
+  promptText: 'Press [E]'
+  promptTextRu: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 [E]"
+  promptFont: {fileID: 11400000, guid: cd6f01ad0faf49f4ea36eefd5ff8e712, type: 2}
 --- !u!114 &1830310291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7134,6 +7683,12 @@ MonoBehaviour:
   deniedBackground: {r: 0, g: 0, b: 0.66, a: 1}
   deniedTitle: :(
   deniedText: "\u041D\u0415\u0422 \u0414\u041E\u0421\u0422\u0423\u041F\u0410\n\n\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0437\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u0430 \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u043E\u043C.\n\u041A\u043E\u0434 \u043E\u0448\u0438\u0431\u043A\u0438: 0x000000ACCESS_DENIED"
+  deniedTextEn: 'ACCESS DENIED
+
+
+    The system has been locked by the administrator.
+
+    Error code: 0x000000ACCESS_DENIED'
   deniedDelay: 0.5
 --- !u!1 &1884391305
 GameObject:
@@ -7274,6 +7829,136 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1911841490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1911841491}
+  - component: {fileID: 1911841495}
+  - component: {fileID: 1911841494}
+  - component: {fileID: 1911841493}
+  - component: {fileID: 1911841492}
+  m_Layer: 0
+  m_Name: Note_Sticker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1911841491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911841490}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.06744763, z: -0, w: 0.9977228}
+  m_LocalPosition: {x: -2.8739552, y: 0.8361536, z: -4.932667}
+  m_LocalScale: {x: 0.075, y: 0.002, z: 0.075}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1738396881}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1911841492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911841490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec21359e70e56a4191c0c34cb2dc756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteItem
+  text: 
+  textEn: 
+  image: {fileID: 21300000, guid: 84ca40240c89d5d43bcf918a9f7c23a1, type: 3}
+  paperColor: {r: 0.98, g: 0.93, b: 0.45, a: 1}
+  monospace: 0
+--- !u!23 &1911841493
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911841490}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b200d7e5f4efec34086fba3f68252dd4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1911841494
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911841490}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1911841495
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911841490}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1920406429
 GameObject:
   m_ObjectHideFlags: 0
@@ -7299,7 +7984,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920406429}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0008851817, y: 0.00101483, z: 0.0010085871}
   m_ConstrainProportionsScale: 0
@@ -7307,7 +7992,7 @@ RectTransform:
   - {fileID: 241606680}
   - {fileID: 268689841}
   m_Father: {fileID: 1783744517}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -7377,6 +8062,12 @@ MonoBehaviour:
   deniedBackground: {r: 0, g: 0, b: 0.66, a: 1}
   deniedTitle: :(
   deniedText: "\u041D\u0415\u0422 \u0414\u041E\u0421\u0422\u0423\u041F\u0410\n\n\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0437\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u0430 \u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u043E\u043C.\n\u041A\u043E\u0434 \u043E\u0448\u0438\u0431\u043A\u0438: 0x000000ACCESS_DENIED"
+  deniedTextEn: 'ACCESS DENIED
+
+
+    The system has been locked by the administrator.
+
+    Error code: 0x000000ACCESS_DENIED'
   deniedDelay: 0.5
 --- !u!114 &1962178529
 MonoBehaviour:
@@ -7395,9 +8086,13 @@ MonoBehaviour:
   activePriority: 20
   inactivePriority: 0
   player: {fileID: 1808274196}
-  maxDistance: 5
+  maxDistance: 1
   disableWhileSeated:
   - {fileID: 801162336}
+  highlightOnApproach: 1
+  promptText: 'Press [E]'
+  promptTextRu: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 [E]"
+  promptFont: {fileID: 11400000, guid: cd6f01ad0faf49f4ea36eefd5ff8e712, type: 2}
 --- !u!1 &1962819168
 GameObject:
   m_ObjectHideFlags: 0
@@ -7522,6 +8217,138 @@ MonoBehaviour:
   openSound: {fileID: 0}
   closeSound: {fileID: 0}
   volume: 0.7
+--- !u!1 &2017917839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2017917840}
+  - component: {fileID: 2017917844}
+  - component: {fileID: 2017917843}
+  - component: {fileID: 2017917842}
+  - component: {fileID: 2017917841}
+  m_Layer: 0
+  m_Name: Note_CaesarHint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2017917840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017917839}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.091143794, z: -0, w: 0.99583775}
+  m_LocalPosition: {x: -1.2539555, y: 0.8361536, z: -4.932667}
+  m_LocalScale: {x: 0.10000001, y: 0.002, z: 0.14}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1738396882}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2017917841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017917839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec21359e70e56a4191c0c34cb2dc756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoteItem
+  text: "\xAB\u0428\u0430\u0433 \u0432\u043F\u0435\u0440\u0451\u0434, \u0448\u0430\u0433 \u0432\u043F\u0435\u0440\u0451\u0434, \u0448\u0430\u0433 \u0432\u043F\u0435\u0440\u0451\u0434\xBB.\n\u0418 \u0442\u0430\u043A \u0441 \u043A\u0430\u0436\u0434\u043E\u0439 \u0431\u0443\u043A\u0432\u043E\u0439."
+  textEn: '"Step forward, step forward, step forward."
+
+    And so with every letter.'
+  image: {fileID: 0}
+  paperColor: {r: 0.96, g: 0.94, b: 0.86, a: 1}
+  monospace: 0
+--- !u!23 &2017917842
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017917839}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 93b30a37dd31c264aa0d75d0b00c3486, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2017917843
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017917839}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2017917844
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017917839}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2022102441
 GameObject:
   m_ObjectHideFlags: 0
@@ -7781,7 +8608,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1800422472}
   m_FillRect: {fileID: 857776639}
   m_HandleRect: {fileID: 1800422471}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -7937,3 +8764,4 @@ SceneRoots:
   - {fileID: 1808274196}
   - {fileID: 1745423833}
   - {fileID: 1158536247}
+  - {fileID: 718703229}

@@ -6,6 +6,8 @@ public enum AppKind { Decryptor = 0 }
 [CreateAssetMenu(menuName = "Game/App", fileName = "NewApp")]
 public class AppData : ScriptableObject {
     public string appName = "Дешифратор";
+    public string appNameEn = "Decryptor";
+    public string DisplayName => Loc.T(appName, appNameEn);
     public AppKind kind = AppKind.Decryptor;
     [Tooltip("Иконка ярлыка. Если пусто — иконка текстового файла.")]
     public Sprite icon;

@@ -24,6 +24,7 @@ public class MonitorInteract : MonoBehaviour
     [Header("Подсказка при приближении")]
     [SerializeField] private bool highlightOnApproach = true;
     [SerializeField] private string promptText = "Press [E]";
+    [SerializeField] private string promptTextRu = "Нажмите [E]";
     [Tooltip("Шрифт подсказки. Пусто — шрифт TMP по умолчанию.")]
     [SerializeField] private TMP_FontAsset promptFont;
 
@@ -113,7 +114,9 @@ public class MonitorInteract : MonoBehaviour
     if (kb.eKey.wasPressedThisFrame && lastToggleFrame != Time.frameCount)
     {
         if (activeMonitor == this) { DeactivateMonitor(); return; }
-        if (activeMonitor == null && GetClosestMonitor() == this) ActivateMonitor();
+        // canSit: никто не сидит, игрок управляет собой (не во вступлении и не читает записку), монитор ближайший
+        // Смотрит на звонящий телефон — E отвечает на звонок, а не сажает за компьютер
+        if (canSit && !(PlayerInteractor.Hovered is PhoneInteractable)) ActivateMonitor();
     }
 }
 private void SetFocus(bool on)
@@ -122,7 +125,7 @@ private void SetFocus(bool on)
     if (focused == on) return;
     focused = on;
     if (outline != null) outline.SetVisible(on);
-    if (on) InteractPrompt.Show(this, promptText, promptFont);
+    if (on) InteractPrompt.Show(this, Loc.T(promptTextRu, promptText), promptFont);
     else InteractPrompt.Hide(this);
 }
 

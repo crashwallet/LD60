@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TaskData
   clippyRequest: "\u0421\u043C\u043E\u0442\u0440\u0438, \u0432 \xAB\u041C\u043E\u0438\u0445 \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0430\u0445\xBB \u043B\u0435\u0436\u0438\u0442 \u0437\u0430\u0448\u0438\u0444\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0444\u0430\u0439\u043B secret.txt. \u041E\u0442\u043A\u0440\u043E\u0439 \u0435\u0433\u043E \u0438 \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u0443\u0439 \u0432 \xAB\u0414\u0435\u0448\u0438\u0444\u0440\u0430\u0442\u043E\u0440\u0435\xBB!"
   answerQuestion: "\u0427\u0442\u043E \u043D\u0430\u043F\u0438\u0441\u0430\u043D\u043E \u0432 secret.txt?"
+  clippyRequestEn: Look, there is an encrypted file secret.txt in My Documents. Open it and decrypt it in the Decryptor!
+  answerQuestionEn: What does secret.txt say?
   file: {fileID: 11400000, guid: f4ff797b527347a41a1689c2a2eeca47, type: 2}
   cipher: 0
   expectedAnswer: Its something strange
-  accessGranted: 1
+  accessGranted: 0
   hiddenEffectLog: "\u041F\u0420\u0418\u041C\u0415\u0420: \u0432\u0438\u0440\u0443\u0441 \u043F\u043E\u043B\u0443\u0447\u0438\u043B \u0434\u043E\u0441\u0442\u0443\u043F \u043A \u043F\u0435\u0440\u0432\u043E\u043C\u0443 \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0443."

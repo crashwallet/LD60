@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Desktop
   m_EditorClassIdentifier: Assembly-CSharp::FolderData
   folderName: "\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B"
+  folderNameEn: Desktop
   kind: 0
   folders:
   - {fileID: 11400000, guid: 1f51ac30bad74ca49a20b33314d8b7b2, type: 2}
