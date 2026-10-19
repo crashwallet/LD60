@@ -21,6 +21,8 @@ public class MonitorInteract : MonoBehaviour
     [SerializeField] private float maxDistance = 2.5f;
     [SerializeField] private Behaviour[] disableWhileSeated;
 
+    private FirstPersonController playerController; // ходьба и обзор мышью, выключаем за компьютером
+
     private void OnEnable()
     {
         if (!allMonitors.Contains(this))
@@ -31,7 +33,10 @@ public class MonitorInteract : MonoBehaviour
     {
         allMonitors.Remove(this);
         if (activeMonitor == this)
+        {
             activeMonitor = null;
+            SetPlayerControl(true); // не оставляем игрока замороженным, если монитор выключили
+        }
     }
 
     private void Start()
@@ -41,6 +46,8 @@ public class MonitorInteract : MonoBehaviour
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null) player = playerObj.transform;
         }
+
+        if (player != null) playerController = player.GetComponent<FirstPersonController>();
 
         if (monitorCamera != null)
         {
@@ -83,6 +90,9 @@ private static bool IsTyping()
 
 private void SetPlayerControl(bool on)
 {
+    // Тело и камера игрока не двигаются, пока он сидит за компьютером
+    if (playerController != null) playerController.enabled = on;
+
     if (disableWhileSeated == null) return;
     foreach (var b in disableWhileSeated) if (b != null) b.enabled = on;
 }

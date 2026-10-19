@@ -13,9 +13,27 @@ public class FirstPersonController : MonoBehaviour
     public float mouseSensitivity = 0.15f;
     public float maxLookAngle = 85f;    // Ограничение взгляда вверх/вниз
 
+    [Header("Тело игрока")]
+    [Tooltip("Не рисовать капсулу игрока: от первого лица она не нужна и попадает в кадр при переходе к монитору.")]
+    public bool hideBody = true;
+
     private CharacterController controller;
     private float verticalRotation = 0f;
     private Vector3 velocity;
+    private int skipLookFrames;
+
+    void Awake()
+    {
+        if (hideBody)
+            foreach (var r in GetComponents<Renderer>()) r.enabled = false;
+    }
+
+    void OnEnable()
+    {
+        // После выхода из-за компьютера курсор снова блокируется, и первый delta мыши
+        // бывает огромным — пропускаем пару кадров, чтобы камера не дёргалась
+        skipLookFrames = 2;
+    }
 
     void Start()
     {
@@ -35,6 +53,7 @@ public class FirstPersonController : MonoBehaviour
     private void HandleMouseLook()
     {
         if (Mouse.current == null || cameraRoot == null) return;
+        if (skipLookFrames > 0) { skipLookFrames--; return; }
 
         // Получаем движение мыши за кадр из новой Input System
         Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity;

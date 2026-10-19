@@ -29,9 +29,6 @@ public class MonitorOS : MonoBehaviour
         SetInput(false);
     }
 
-    // В начало TurnOnMonitor():  SetInput(true);
-    // В начало TurnOffMonitor(): SetInput(false);
-
     private void SetInput(bool on)
     {
         if (raycaster != null) raycaster.enabled = on;
@@ -41,6 +38,7 @@ public class MonitorOS : MonoBehaviour
 
     public void TurnOnMonitor()
     {
+        SetInput(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -57,6 +55,7 @@ public class MonitorOS : MonoBehaviour
 
     public void TurnOffMonitor()
     {
+        SetInput(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
