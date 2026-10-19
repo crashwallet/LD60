@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787338873ad36904b9288bf6feccadcf, type: 3}
+  m_Name: Desktop
+  m_EditorClassIdentifier: Assembly-CSharp::FolderData
+  folderName: "\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B"
+  kind: 0
+  folders:
+  - {fileID: 11400000, guid: d6346e56c5c53764e9576844304f71bb, type: 2}
+  - {fileID: 11400000, guid: 306ac6b299b5f6041bdf4f956399c5bd, type: 2}
+  - {fileID: 11400000, guid: ed27ec00955d72f4b827303ea024076c, type: 2}
+  files: []
+  apps:
+  - {fileID: 11400000, guid: 24cd49dcbb2ee9a4fb5b6d1ae4b834f6, type: 2}

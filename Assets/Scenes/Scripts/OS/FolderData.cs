@@ -13,6 +13,8 @@ public class FolderData : ScriptableObject {
     [Header("Содержимое")]
     public List<FolderData> folders = new();
     public List<FileData> files = new();
+    [Tooltip("Ярлыки программ, например «Дешифратор».")]
+    public List<AppData> apps = new();
 
-    public bool IsEmpty => folders.Count == 0 && files.Count == 0;
+    public bool IsEmpty => folders.Count == 0 && files.Count == 0 && apps.Count == 0;
 }

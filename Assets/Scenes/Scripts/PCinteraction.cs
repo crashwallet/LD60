@@ -21,7 +21,29 @@ public class MonitorInteract : MonoBehaviour
     [SerializeField] private float maxDistance = 2.5f;
     [SerializeField] private Behaviour[] disableWhileSeated;
 
+    [Header("Подсказка при приближении")]
+    [SerializeField] private bool highlightOnApproach = true;
+    [SerializeField] private string promptText = "Press [E]";
+    [Tooltip("Шрифт подсказки. Пусто — шрифт TMP по умолчанию.")]
+    [SerializeField] private TMP_FontAsset promptFont;
+
     private FirstPersonController playerController; // ходьба и обзор мышью, выключаем за компьютером
+    private Renderer monitorRenderer;
+    private HoverOutline outline;
+    private bool focused;
+    private static int lastToggleFrame = -1; // чтобы одно нажатие E не выключило один монитор и не включило другой
+
+    // У мониторов из FBX pivot у всех в одной точке (начало координат модели),
+    // поэтому расстояние меряем от центра меша, иначе все мониторы «одинаково близко»
+    private Vector3 InteractionPosition => monitorRenderer != null ? monitorRenderer.bounds.center : transform.position;
+
+    private float DistanceToPlayer() => Vector3.Distance(InteractionPosition, player.position);
+
+    private void Awake()
+    {
+        monitorRenderer = GetComponent<Renderer>();
+        if (monitorRenderer == null) monitorRenderer = GetComponentInChildren<Renderer>();
+    }
 
     private void OnEnable()
     {
@@ -32,6 +54,7 @@ public class MonitorInteract : MonoBehaviour
     private void OnDisable()
     {
         allMonitors.Remove(this);
+        SetFocus(false);
         if (activeMonitor == this)
         {
             activeMonitor = null;
@@ -49,6 +72,12 @@ public class MonitorInteract : MonoBehaviour
 
         if (player != null) playerController = player.GetComponent<FirstPersonController>();
 
+        if (highlightOnApproach)
+        {
+            outline = GetComponent<HoverOutline>();
+            if (outline == null) outline = gameObject.AddComponent<HoverOutline>();
+        }
+
         if (monitorCamera != null)
         {
             monitorCamera.Priority.Enabled = true; // Включаем переопределение приоритета в CM 3.x
@@ -60,7 +89,13 @@ public class MonitorInteract : MonoBehaviour
 {
     if (player == null || monitorCamera == null || Keyboard.current == null) return;
 
-    if (activeMonitor == this && Vector3.Distance(transform.position, player.position) > maxDistance)
+    // Обводка и «Press [E]», когда к этому монитору можно сесть
+    bool canSit = activeMonitor == null
+                  && (playerController == null || playerController.enabled)
+                  && GetClosestMonitor() == this;
+    SetFocus(canSit);
+
+    if (activeMonitor == this && DistanceToPlayer() > maxDistance)
     {
         DeactivateMonitor();
         return;
@@ -75,12 +110,28 @@ public class MonitorInteract : MonoBehaviour
         return;
     }
 
-    if (kb.eKey.wasPressedThisFrame)
+    if (kb.eKey.wasPressedThisFrame && lastToggleFrame != Time.frameCount)
     {
         if (activeMonitor == this) { DeactivateMonitor(); return; }
         if (activeMonitor == null && GetClosestMonitor() == this) ActivateMonitor();
     }
 }
+private void SetFocus(bool on)
+{
+    if (!highlightOnApproach) on = false;
+    if (focused == on) return;
+    focused = on;
+    if (outline != null) outline.SetVisible(on);
+    if (on) InteractPrompt.Show(this, promptText, promptFont);
+    else InteractPrompt.Hide(this);
+}
+
+// Встать из-за компьютера (например, из меню «Пуск» в ОС)
+public void ExitSeat()
+{
+    if (activeMonitor == this) DeactivateMonitor();
+}
+
 private static bool IsTyping()
 {
     var es = EventSystem.current;
@@ -107,7 +158,7 @@ private void SetPlayerControl(bool on)
         {
             if (monitor.player == null) continue;
 
-            float dist = Vector3.Distance(monitor.transform.position, monitor.player.position);
+            float dist = monitor.DistanceToPlayer();
             if (dist <= minDistance)
             {
                 minDistance = dist;
@@ -120,6 +171,7 @@ private void SetPlayerControl(bool on)
    private void ActivateMonitor()
 {
     activeMonitor = this;
+    lastToggleFrame = Time.frameCount;
     monitorCamera.Priority.Value = activePriority;
     SetPlayerControl(false);
     if (monitorOS != null) monitorOS.TurnOnMonitor();
@@ -128,6 +180,7 @@ private void SetPlayerControl(bool on)
 private void DeactivateMonitor()
 {
     activeMonitor = null;
+    lastToggleFrame = Time.frameCount;
     monitorCamera.Priority.Value = inactivePriority;
     SetPlayerControl(true);
     if (monitorOS != null) monitorOS.TurnOffMonitor();

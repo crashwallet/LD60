@@ -88,7 +88,54 @@ public static class OSUI {
         return content;
     }
 
+    // Поле ввода TMP. Объект собирается выключенным, чтобы TMP_InputField инициализировался уже со всеми ссылками.
+    public static TMP_InputField InputField(string name, Transform parent, string placeholder, TMP_FontAsset font, float size,
+                                            Color textColor, Color placeholderColor, bool multiline) {
+        var bg = Image(name, parent, Color.white);
+        bg.gameObject.SetActive(false);
+
+        var area = Stretch(Rect("Text Area", bg.transform), 4, 2, 4, 2);
+        area.gameObject.AddComponent<RectMask2D>();
+
+        var align = multiline ? TextAlignmentOptions.TopLeft : TextAlignmentOptions.MidlineLeft;
+        var ph = Text("Placeholder", area, placeholder, font, size, placeholderColor, align);
+        ph.fontStyle = FontStyles.Italic;
+        Stretch(ph.rectTransform);
+
+        var text = Text("Text", area, "", font, size, textColor, align);
+        text.richText = false;
+        text.overflowMode = TextOverflowModes.Overflow;
+        if (multiline) text.textWrappingMode = TextWrappingModes.Normal;
+        Stretch(text.rectTransform);
+
+        var input = bg.gameObject.AddComponent<TMP_InputField>();
+        input.targetGraphic = bg;
+        input.textViewport = area;
+        input.textComponent = text;
+        input.placeholder = ph;
+        if (font != null) input.fontAsset = font;
+        input.pointSize = size;
+        input.richText = false;
+        input.lineType = multiline ? TMP_InputField.LineType.MultiLineNewline : TMP_InputField.LineType.SingleLine;
+
+        bg.gameObject.SetActive(true);
+        return input;
+    }
+
+    // Расположить элемент в родителе по нормализованным координатам (0..1) с отступами в пикселях
+    public static RectTransform Place(RectTransform rt, Vector2 anchorMin, Vector2 anchorMax, Vector2 offsetMin = default, Vector2 offsetMax = default) {
+        rt.anchorMin = anchorMin;
+        rt.anchorMax = anchorMax;
+        rt.offsetMin = offsetMin;
+        rt.offsetMax = offsetMax;
+        return rt;
+    }
+
     public static void Clear(Transform t) {
-        for (int i = t.childCount - 1; i >= 0; i--) Object.Destroy(t.GetChild(i).gameObject);
+        for (int i = t.childCount - 1; i >= 0; i--) {
+            var go = t.GetChild(i).gameObject;
+            go.SetActive(false); // Destroy отложен до конца кадра — выключаем, чтобы Layout сразу их не учитывал
+            Object.Destroy(go);
+        }
     }
 }

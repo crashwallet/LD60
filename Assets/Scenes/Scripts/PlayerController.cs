@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem; // Новая система ввода Unity 6
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
@@ -16,6 +17,19 @@ public class FirstPersonController : MonoBehaviour
     [Header("Тело игрока")]
     [Tooltip("Не рисовать капсулу игрока: от первого лица она не нужна и попадает в кадр при переходе к монитору.")]
     public bool hideBody = true;
+
+    [Header("Зум колёсиком мыши")]
+    [Tooltip("Камера игрока (P_camera). Если пусто — найдётся среди дочерних объектов игрока.")]
+    public CinemachineCamera playerCamera;
+    [Tooltip("Минимальный угол обзора при максимальном приближении.")]
+    public float minFov = 25f;
+    [Tooltip("На сколько градусов меняется угол обзора за один щелчок колёсика.")]
+    public float zoomStep = 7f;
+    [Tooltip("Плавность зума: чем больше, тем быстрее догоняет.")]
+    public float zoomSmooth = 12f;
+
+    private float defaultFov = 60f;
+    private float targetFov = 60f;
 
     private CharacterController controller;
     private float verticalRotation = 0f;
@@ -39,6 +53,10 @@ public class FirstPersonController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
 
+        if (playerCamera == null) playerCamera = GetComponentInChildren<CinemachineCamera>(true);
+        if (playerCamera != null) defaultFov = targetFov = playerCamera.Lens.FieldOfView;
+        else Debug.LogWarning("[FirstPersonController] Не найдена камера игрока — зум отключён", this);
+
         // Прячем и блокируем курсор по центру экрана при старте игры
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -46,8 +64,23 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
+        HandleZoom();
         HandleMouseLook();
         HandleMovement();
+    }
+
+    // Колёсико вперёд — приблизить, назад — отдалить до обычного угла обзора
+    private void HandleZoom()
+    {
+        if (playerCamera == null || Mouse.current == null) return;
+
+        float scroll = Mouse.current.scroll.ReadValue().y;
+        if (scroll != 0f)
+            targetFov = Mathf.Clamp(targetFov - Mathf.Sign(scroll) * zoomStep, minFov, defaultFov);
+
+        var lens = playerCamera.Lens;
+        lens.FieldOfView = Mathf.Lerp(lens.FieldOfView, targetFov, 1f - Mathf.Exp(-zoomSmooth * Time.deltaTime));
+        playerCamera.Lens = lens;
     }
 
     private void HandleMouseLook()
@@ -56,7 +89,9 @@ public class FirstPersonController : MonoBehaviour
         if (skipLookFrames > 0) { skipLookFrames--; return; }
 
         // Получаем движение мыши за кадр из новой Input System
-        Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity;
+        // При зуме мышь медленнее, чтобы прицеливаться было удобно
+        float zoomFactor = playerCamera != null ? playerCamera.Lens.FieldOfView / defaultFov : 1f;
+        Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity * zoomFactor;
 
         // 1. Вращение вверх-вниз (наклоняем только шею CameraRoot)
         verticalRotation -= mouseDelta.y;

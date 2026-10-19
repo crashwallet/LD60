@@ -19,3 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f42e7f02f94a194c92e7b6183dc0bdf, type: 2}
   - {fileID: 11400000, guid: fab65e5bd8b394c40ba31c2909c5873e, type: 2}
   files: []
+  apps:
+  - {fileID: 11400000, guid: 24cd49dcbb2ee9a4fb5b6d1ae4b834f6, type: 2}

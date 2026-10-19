@@ -49,6 +49,8 @@ public class ExplorerWindow : MonoBehaviour {
         // Сетка с иконками
         var area = OSUI.ScrollArea("Files", c, Color.white, out scroll);
         OSUI.Stretch((RectTransform)area.parent.parent, 0, StatusHeight, 0, ToolbarHeight);
+        // Бросить иконку на пустое место окна — положить в открытую папку
+        FolderDropZone.Add(area.parent.parent.gameObject, os, () => current);
         grid = area;
         var layout = grid.gameObject.AddComponent<GridLayoutGroup>();
         layout.cellSize = os.IconCellSize;
@@ -89,14 +91,18 @@ public class ExplorerWindow : MonoBehaviour {
 
         foreach (var f in current.folders.Where(f => f != null)) {
             var folder = f;
-            OSIcon.Create(os, grid, folder.folderName, os.IconFor(folder), os.TextColor, () => Navigate(folder));
+            OSIcon.Create(os, grid, folder.folderName, os.IconFor(folder), os.TextColor, () => Navigate(folder), folder, current);
         }
         foreach (var f in current.files.Where(f => f != null)) {
             var file = f;
-            OSIcon.Create(os, grid, file.fileName, os.IconFor(file), os.TextColor, () => os.OpenFile(file));
+            OSIcon.Create(os, grid, file.fileName, os.IconFor(file), os.TextColor, () => os.OpenFile(file), file, current);
+        }
+        foreach (var a in current.apps.Where(a => a != null)) {
+            var app = a;
+            OSIcon.Create(os, grid, app.appName, os.IconFor(app), os.TextColor, () => os.OpenApp(app), app, current);
         }
 
-        int count = current.folders.Count(f => f != null) + current.files.Count(f => f != null);
+        int count = current.folders.Count(f => f != null) + current.files.Count(f => f != null) + current.apps.Count(a => a != null);
         emptyText.gameObject.SetActive(count == 0);
         statusText.text = $"Объектов: {count}";
         backButton.interactable = history.Count > 0;

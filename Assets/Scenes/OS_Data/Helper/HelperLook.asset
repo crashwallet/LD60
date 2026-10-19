@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c22bd6f214124148a412e0490c4a579, type: 3}
+  m_Name: HelperLook
+  m_EditorClassIdentifier: Assembly-CSharp::HelperLook
+  questionBody: {fileID: 21300000, guid: 4f9a168342b911246b1a4a5b9b76ecfb, type: 3}
+  exclamationBody: {fileID: 21300000, guid: f323f3509fc1f544ca6b4ac1f816460a, type: 3}
+  morphFrames:
+  - {fileID: 21300000, guid: 5babfd38082544f448f2989222466059, type: 3}
+  - {fileID: 21300000, guid: cd14b8f56d3018f42a12b26756b2381e, type: 3}
+  - {fileID: 21300000, guid: ef46b1bc8e89d2b44b178866723e6c77, type: 3}
+  morphFrameTime: 0.07
+  defaultEyes: {fileID: 21300000, guid: 67f4c3080e580634098823cae1fe0d07, type: 3}
+  angryEyes: {fileID: 21300000, guid: d83f6e2189c440c4c81eec003ef287de, type: 3}
+  funnyEyes: {fileID: 21300000, guid: 8bfc1ec377a86754fb061ddcc68f1d1c, type: 3}
+  peacefulEyes: {fileID: 21300000, guid: 06f66c3983c57234384b87c98fc8df62, type: 3}
+  questionaryEyes: {fileID: 21300000, guid: b8db34b87e068fc4fa8f8dfbcc9c8c35, type: 3}
+  thinkingEyes: {fileID: 21300000, guid: 4cca0343c43087549911d170922dc225, type: 3}
+  eyesOffset: {x: 0, y: 0.25}
+  eyesScale: 1
